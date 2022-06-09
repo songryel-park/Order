@@ -31,13 +31,13 @@ public class Order extends Timestamped {
     }
     public void totalPricePolicyTest() {
         if(getTotalOrderPrice() < restaurant.getMinOrderPrice())
-            System.out.println("최소주문가격 보다 적습니다");
+            throw new IllegalArgumentException("최소주문가격 보다 적습니다");
     }
     public void orderMenuCountPolicyTest() {
         if(orderMenu.values().stream().filter(e-> e <= 0).count() > 0 || orderMenu.keySet().stream().count() == 0)
-            System.out.println("음식을 주문되지 않았습니다");
+            throw new IllegalArgumentException("음식을 주문되지 않았습니다");
         if(orderMenu.values().stream().filter(e-> e > 100).count() > 0)
-            System.out.println("주문 수량은 100개까지");
+            throw new IllegalArgumentException("주문 수량은 100개까지");
     }
     public void totalPolicyTest() {
         totalPricePolicyTest();

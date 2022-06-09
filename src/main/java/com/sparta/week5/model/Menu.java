@@ -21,8 +21,8 @@ public class Menu extends Timestamped {
 
     public void priceTest() {
         if(price < 100 || price > 1000000)
-            System.out.println("가격은 100 ~ 1,000,000원");
+            throw new IllegalArgumentException("가격은 100 ~ 1,000,000원");
         if(price % 100 != 0)
-            System.out.println("100원 단위로만 추가 입력 가능");
+            throw new IllegalArgumentException("100원 단위로만 추가 입력 가능");
     }
 }

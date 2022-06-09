@@ -43,19 +43,19 @@ public class Restaurant extends Timestamped {
     }
     public void menuPolicyTest() {
         if(menus.stream().filter(disctinctByKey(e->e.getName())).count() != menus.size())
-            System.out.println("중복된 이름으로 메뉴를 추가할 수 없습니다");
+            throw new IllegalArgumentException("중복된 이름으로 메뉴를 추가할 수 없습니다");
     }
     public void minOrderPricePolicyTest() {
         if(minOrderPrice < 1000 || minOrderPrice > 100000)
-            System.out.println("최소주문가격은 1000 ~ 100,000원");
+            throw new IllegalArgumentException("최소주문가격은 1000 ~ 100,000원");
         if(minOrderPrice % 100 != 0)
-            System.out.println("100원 단위로만 추가 입력 가능");
+            throw new IllegalArgumentException("100원 단위로만 추가 입력 가능");
     }
     public void deliveryFeePolicyTest() {
         if(deliveryFee < 0 || deliveryFee > 10000)
-            System.out.println("기본배달비는 0 ~ 10,000원");
+            throw new IllegalArgumentException("기본배달비는 0 ~ 10,000원");
         if(deliveryFee % 500 != 0)
-            System.out.println("기본배달비는 500원 단위로만 추가 입력 가능");
+            throw new IllegalArgumentException("기본배달비는 500원 단위로만 추가 입력 가능");
     }
 
     public static <T> Predicate<T> disctinctByKey(Function<?super T, Object> keyExtractor){
